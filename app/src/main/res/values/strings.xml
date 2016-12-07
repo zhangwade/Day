@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">倒数日</string>
+    <string name="all_all">全部</string>
+    <string name="all_anniversary">纪念日</string>
+    <string name="all_work">工作</string>
+    <string name="all_life">生活</string>
+    <string name="update">更新日志</string> //暂时没用
+    <string name="about">关于</string>  //暂时没用
+    <string name="add">新增</string>  //暂时没用
+    <string name="delete">删除</string>  //暂时没用
+    <string name="edit">编辑</string>  //暂时没用
+    <string name="all_again">不重复</string>
+    <string name="activity_check_text_remind_to">距离</string>
+</resources>
