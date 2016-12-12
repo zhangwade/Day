@@ -23,7 +23,7 @@ import java.util.Calendar;
  * 修改纪念日的类
  * Created by Administrator on 2016/6/7 0007.
  */
-public class EditActivity extends Activity {
+public class EditActivity extends BaseActivity {
 
     public ActionBar actionBar;
 

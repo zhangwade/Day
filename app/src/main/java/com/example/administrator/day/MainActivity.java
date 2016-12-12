@@ -22,7 +22,7 @@ import android.view.Window;
 //import com.example.administrator.day.XCSlideView.R;
 
 
-public class MainActivity extends Activity{
+public class MainActivity extends BaseActivity{
 
     //MyDatabaseHelper dbHelper;
     //ListView listview;

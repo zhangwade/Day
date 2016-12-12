@@ -22,7 +22,7 @@ import java.util.Calendar;
  * 处理新增纪念日的类
  * Created by Administrator on 2016/5/28 0028.
  */
-public class AddActivity extends Activity {
+public class AddActivity extends BaseActivity {
 
     public String items[]={"纪念日","工作","生活"};//事件分类的3个选项
     public String againItems[]={"不重复","每年重复"};//重复的2个选项

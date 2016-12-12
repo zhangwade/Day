@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * Created by Administrator on 2016/7/18 0018.
  */
-public class CheckActivity extends Activity {
+public class CheckActivity extends BaseActivity {
 
     public ActionBar actionBar;
 

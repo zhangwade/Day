@@ -16,9 +16,7 @@ public class GetDayofWeek {
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
-
             mCalendar.setTime(mSimpleDateFormat.parse(date));
-
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
