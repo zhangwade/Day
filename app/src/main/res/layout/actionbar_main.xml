@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by WadeZhang on 16-12-13 下午5:42
+  ~ Copyright (c) 2016. All rights reserved.
+  ~
+  ~ Last modified 16-11-16 上午11:23
+  -->
+
 <!--主界面的actionbar布局(暂时废弃)-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">

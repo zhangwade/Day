@@ -1,3 +1,10 @@
+/*
+ * Created by WadeZhang on 16-12-13 下午5:42
+ * Copyright (c) 2016. All rights reserved.
+ *
+ * Last modified 16-11-19 下午4:23
+ */
+
 package com.example.administrator.day;
 
 import android.app.Fragment;
