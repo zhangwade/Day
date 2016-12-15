@@ -19,11 +19,10 @@ import static android.content.Context.ALARM_SERVICE;
 import static java.util.Calendar.YEAR;
 
 /**
- * 为每个纪念日设置通知栏弹出提醒
  * Created by Administrator on 2016/11/27 0027.
  */
 public class Alarm {
-
+/*
     int mYear, mMonth, mDay, mAgain, mRequestCode;
     String mTitle;
     Context mContext;
@@ -42,19 +41,17 @@ public class Alarm {
         this.mRequestCode = requestCode;
         this.mTitle = title;
     }
-
-    public void setAlarm( ){//设定闹钟提醒
-        Bundle bundle = new Bundle();
-        bundle.putString("title", mTitle);
-        bundle.putString("date", mMonth+"-"+mDay);
-        Intent intent = new Intent(mContext, NotificationActivity.class);
-        intent.putExtras(bundle);
-        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, mRequestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+*/
+    public static void setAlarm(Context mContext){//设定闹钟提醒
+        Intent intent = new Intent(mContext, AlarmService.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(mYear, mMonth, mDay, HOUR, MINUTE);
-        calendar.add(Calendar.DAY_OF_MONTH, 0-DAYS_BEFOREHAND);
+        int mHour = 0; //TODO
+        int mMinute = 0; //TODO
+        calendar.set(Calendar.HOUR_OF_DAY, mHour);
+        calendar.set(Calendar.MINUTE, mMinute);
+        calendar.set(Calendar.SECOND, 0);
         AlarmManager alarmManager = (AlarmManager)mContext.getSystemService(ALARM_SERVICE);
-        if(mAgain == 0) alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-            else alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), YEAR, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 }

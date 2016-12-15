@@ -45,7 +45,7 @@ public class NotificationActivity extends BaseActivity{
         Notification mNotification = new Notification.Builder(this)
                 .setAutoCancel(true)
                 .setTicker("倒数日的新消息")
-                .setSmallIcon(R.drawable.icon_tick)//后期要记得改图标
+                .setSmallIcon(R.drawable.icon_tick)//TODO 后期要记得改图标
                 .setContentTitle(mTitle)
                 .setContentText(mDate)
                 .setDefaults(Notification.DEFAULT_SOUND)

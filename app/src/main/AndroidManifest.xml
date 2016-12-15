@@ -36,6 +36,8 @@
 
         <activity android:name=".NotificationActivity"/>
 
+        <service android:name=".AlarmService"/>
+
     </application>
 
 </manifest>

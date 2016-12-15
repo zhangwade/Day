@@ -62,7 +62,7 @@ public class CheckActivity extends BaseActivity {
         t2=(TextView)findViewById(R.id.text_daytitle);
         t3=(TextView)findViewById(R.id.text_dayleft);
         t4=(TextView)findViewById(R.id.text_date);
-        dbHelper=new MyDatabaseHelper(CheckActivity.this,"myall.db3",1);
+        dbHelper=new MyDatabaseHelper(CheckActivity.this, "myall.db3", 1);
         cursor=dbHelper.getReadableDatabase().rawQuery("select * from whole where _id=?", new String[]{Integer.toString(itemId)});
         cursor.moveToFirst();
         aimDate=cursor.getString(2);
