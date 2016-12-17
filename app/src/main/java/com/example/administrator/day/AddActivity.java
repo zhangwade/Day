@@ -48,7 +48,6 @@ public class AddActivity extends BaseActivity {
     public Intent intent;
 
     public Calendar c;
-    public GetDayofWeek get;
 
     public SharedPreferences preferences;//保存“分类”单选对话框所选的项
     public SharedPreferences.Editor editor;
@@ -125,11 +124,10 @@ public class AddActivity extends BaseActivity {
         date=(TextView)findViewById(R.id.text_date);//“日期”选择
         //date.setInputType(InputType.TYPE_NULL);
         c=Calendar.getInstance();
-        get=new GetDayofWeek();
         nowDate = new String(c.get(Calendar.YEAR) + "-"
                 + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH));
 
-        date.setText(nowDate+" 周"+get.getDayOfWeek(nowDate));//在文本框中显示初始日期
+        date.setText(nowDate+" 周"+GetDayofWeek.getDayOfWeek(nowDate));//在文本框中显示初始日期
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +136,7 @@ public class AddActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {//创建日期选择对话框
                         //date.setText("");
                         String mChosenDate=new String(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);//选中的日期
-                        date.setText(mChosenDate+" 周"+get.getDayOfWeek(mChosenDate));//在文本框中显示选定的日期
+                        date.setText(mChosenDate+" 周"+GetDayofWeek.getDayOfWeek(mChosenDate));//在文本框中显示选定的日期
                     }
                 },c.get(Calendar.YEAR)//设置日期选择器的初始日期
                  ,c.get(Calendar.MONTH)
@@ -166,12 +164,10 @@ public class AddActivity extends BaseActivity {
                     cursor.moveToLast();
                     itemId = cursor.getInt(0) + 1;
                     new Thread() {
-                        DayLeft mDayleft;
 
                         @Override
                         public void run() {
-                            mDayleft = new DayLeft();
-                            leftDay = mDayleft.cal(dateStr, num);
+                            leftDay = DayLeft.cal(dateStr, num);
                         }
                     }.start();
                     dbHelper.getWritableDatabase().execSQL("insert into " +//将新添加的事件插入数据库
@@ -195,43 +191,4 @@ public class AddActivity extends BaseActivity {
         if(dbHelper!=null)
             dbHelper.close();
     }
-/*
-    public String getDayOfWeek(String date){//计算星期几
-        Week=new String("");
-        try {
-
-            c.setTime(format.parse(date));
-
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        switch (c.get(Calendar.DAY_OF_WEEK)) {
-            case 1:
-                Week += "日";
-                break;
-            case 2:
-                Week += "一";
-                break;
-            case 3:
-                Week += "二";
-                break;
-            case 4:
-                Week += "三";
-                break;
-            case 5:
-                Week += "四";
-                break;
-            case 6:
-                Week += "五";
-                break;
-            case 7:
-                Week += "六";
-                break;
-            default:
-                break;
-        }
-        return Week;
-    }
-*/
 }

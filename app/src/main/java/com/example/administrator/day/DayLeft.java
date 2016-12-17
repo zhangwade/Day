@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class DayLeft {
 
-    public int cal(String date,int again){
+    public static int cal(String date,int again){
 
         long mNow = new Date().getTime();
         long mAim=0;

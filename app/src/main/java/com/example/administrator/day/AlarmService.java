@@ -43,7 +43,7 @@ public class AlarmService extends IntentService {
                 mSetDate = mCursor.getString(2);
                 mDaysAhead = 0; //TODO 从SharedPreferences中读取 提前提醒的天数
                 mAgain = mCursor.getInt(6);
-                if( new HasTheDayCome().hasTheDayCome(mSetDate, mCalendar, mDaysAhead, mAgain) ){
+                if( HasTheDayCome.hasTheDayCome(mSetDate, mCalendar, mDaysAhead, mAgain) ){
                     mID = mCursor.getInt(0);
                     mTitle = mCursor.getString(1);
                     NotificationActivity.actionStart(this, mID, mTitle, mSetDate);

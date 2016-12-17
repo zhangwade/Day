@@ -53,7 +53,6 @@ public class EditActivity extends BaseActivity {
     public String[] newStr;
     public String titleStr,dateStr,describeStr,kindStr,againStr;
 
-    public GetDayofWeek get;
     public Calendar c;
 
     public SharedPreferences preferences;//保存“分类”单选对话框所选的项
@@ -89,7 +88,6 @@ public class EditActivity extends BaseActivity {
         dateStr=cursor.getString(2);
         date.setText(dateStr);
         c=Calendar.getInstance();
-        get=new GetDayofWeek();
         newStr=dateStr.split("-");
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +98,7 @@ public class EditActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {//创建日期选择对话框
                         //date.setText("");
                         String chosen_date = new String(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);//选中的日期
-                        date.setText(chosen_date + " 周" + get.getDayOfWeek(chosen_date));//在文本框中显示选定的日期
+                        date.setText(chosen_date + " 周" + GetDayofWeek.getDayOfWeek(chosen_date));//在文本框中显示选定的日期
                     }
                 }, Integer.parseInt(newStr[0])//设置日期选择器的初始日期
                         , Integer.parseInt(newStr[1])-1
@@ -189,11 +187,9 @@ public class EditActivity extends BaseActivity {
                     num = preferences.getInt("again", 0);
                     //dbHelper = new MyDatabaseHelper(AddActivity.this, "myall.db3", 1);
                     new Thread() {
-                        DayLeft mDayleft;
                         @Override
                         public void run() {
-                            mDayleft = new DayLeft();
-                            leftDay = mDayleft.cal(dateStr, num);
+                            leftDay = DayLeft.cal(dateStr, num);
                             againStr = Integer.toString(num);
                             dbHelper.getWritableDatabase().execSQL("update whole" +//将新添加的事件插入数据库
                                     " set title=?,date=?,describe=?,kind=?,dayleft=?,again=? where _id=?",

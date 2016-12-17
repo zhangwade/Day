@@ -43,15 +43,15 @@ public class Alarm {
     }
 */
     public static void setAlarm(Context mContext){//设定闹钟提醒
-        Intent intent = new Intent(mContext, AlarmService.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        Calendar calendar = Calendar.getInstance();
+        Intent mIntent = new Intent(mContext, AlarmService.class);
+        PendingIntent mPendingIntent = PendingIntent.getService(mContext, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Calendar mSetCalendar = Calendar.getInstance();
         int mHour = 0; //TODO
         int mMinute = 0; //TODO
-        calendar.set(Calendar.HOUR_OF_DAY, mHour);
-        calendar.set(Calendar.MINUTE, mMinute);
-        calendar.set(Calendar.SECOND, 0);
-        AlarmManager alarmManager = (AlarmManager)mContext.getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        mSetCalendar.set(Calendar.HOUR_OF_DAY, mHour);
+        mSetCalendar.set(Calendar.MINUTE, mMinute);
+        mSetCalendar.set(Calendar.SECOND, 0);
+        AlarmManager mAlarmManager = (AlarmManager)mContext.getSystemService(ALARM_SERVICE);
+        mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, mSetCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, mPendingIntent);
     }
 }

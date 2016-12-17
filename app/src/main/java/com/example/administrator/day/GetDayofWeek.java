@@ -16,7 +16,7 @@ import java.util.Calendar;
  */
 public class GetDayofWeek {
 
-    public String getDayOfWeek(String date){//计算星期几
+    public static String getDayOfWeek(String date){//计算星期几
 
         String mWeek=new String("");;
         Calendar mCalendar=Calendar.getInstance();

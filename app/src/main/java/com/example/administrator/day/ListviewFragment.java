@@ -62,13 +62,12 @@ public class ListviewFragment extends Fragment {
                 mCursor = dbHelper.getReadableDatabase().rawQuery("select * from whole", null);
                 String mDate;
                 int mAgain;
-                DayLeft mDayLeft=new DayLeft();
                 int mLeftday;
                 for(i=0,mCursor.moveToFirst();i<mCursor.getCount();i++,mCursor.moveToNext()){
                     mDate=mCursor.getString(2).substring(0,10);//date存储在每一行的第三列
                     mAgain=mCursor.getInt(6);
                     itemid=mCursor.getInt(0);
-                    mLeftday=mDayLeft.cal(mDate, mAgain);
+                    mLeftday=DayLeft.cal(mDate, mAgain);
                     dbHelper.getWritableDatabase().execSQL("update whole set dayleft=? where _id=?",
                             new String[]{Integer.toString(mLeftday),Integer.toString(itemid)});
                 }

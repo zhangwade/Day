@@ -19,31 +19,12 @@ import java.util.Calendar;
 
 public class HasTheDayCome {
 
-    String mSetDate = null;
-    Calendar mSetCalendar, mNowCalendar;
-    int mSetHour = 0, mSetMinute = 0;
-    int mDaysAhead = 0; //提前几天通知?
-    int mAgain = 0;  //是否每年重复
-/*
-    public HasTheDayCome(String mSetDate, Calendar mNowCalendar, int mDaysAhead, int mAgain){
-        this.mSetDate = mSetDate;
-        this.mNowCalendar = mNowCalendar;
-        this.mDaysAhead = mDaysAhead;
-        this.mAgain = mAgain;
-    }
-
-    public HasTheDayCome(int mSetHour, int mSetMinute, Calendar mNowCalendar){
-        this.mSetHour = mSetHour;
-        this.mSetMinute = mSetMinute;
-        this.mNowCalendar = mNowCalendar;
-    }
-*/
-    public boolean hasTheDayCome(String mSetDate, Calendar mNowCalendar, int mDaysAhead, int mAgain){  //纪念日是否到了要提醒的日子
-        this.mSetDate = mSetDate;
-        this.mNowCalendar = mNowCalendar;
-        this.mDaysAhead = mDaysAhead;
-        this.mAgain = mAgain;
-        mSetCalendar = Calendar.getInstance();
+    public static boolean hasTheDayCome(String setDate, Calendar nowCalendar, int daysAhead, int again){  //纪念日是否到了要提醒的日子
+        String mSetDate = setDate;
+        Calendar mNowCalendar = nowCalendar;
+        Calendar mSetCalendar = Calendar.getInstance();
+        int mDaysAhead = daysAhead; //提前几天通知?
+        int mAgain = again; //是否每年重复
         SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             mSetCalendar.setTime(mSimpleDateFormat.parse(mSetDate));
@@ -73,11 +54,11 @@ public class HasTheDayCome {
         return false;
     }
 
-    public boolean HasTheTimeCome(int mSetHour, int mSetMinute, Calendar mNowCalendar){ //重新调整提醒时间后，判断是否已到达此时间
-        this.mSetHour = mSetHour;
-        this.mSetMinute = mSetMinute;
-        this.mNowCalendar = mNowCalendar;
-        mSetCalendar = (Calendar) mNowCalendar.clone();
+    public static boolean hasTheTimeCome(int setHour, int setMinute, Calendar nowCalendar){ //重新调整提醒时间后，判断是否已到达此时间
+        int mSetHour = setHour;
+        int mSetMinute = setMinute;
+        Calendar mNowCalendar = nowCalendar;
+        Calendar mSetCalendar = (Calendar) mNowCalendar.clone();
         mSetCalendar.set(Calendar.HOUR_OF_DAY, mSetHour);
         mSetCalendar.set(Calendar.MINUTE, mSetMinute);
         mSetCalendar.set(Calendar.SECOND, 0);
