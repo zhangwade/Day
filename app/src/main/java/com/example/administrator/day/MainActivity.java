@@ -10,6 +10,7 @@ package com.example.administrator.day;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
@@ -45,11 +46,16 @@ public class MainActivity extends BaseActivity{
             R.drawable.icon_back,R.drawable.icon_back,};
     public int index;
 
+    SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor mEditor;
+    public static final String ALARM_XML_FILE_NAME = "alarm"; //保存闹钟提示信息（通知时间和提前几天）的xml文件名称
+    public static final String ALARM_HOUR = "alarmHour";
+    public static final String ALARM_MINUTE = "alarmMinute"; //通知时间
+    public static final String ALARM_DAYS_AHEAD = "alarmDaysAhead"; //提前几天通知
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         lv=(ListView)findViewById(R.id.list_menu);
@@ -93,6 +99,16 @@ public class MainActivity extends BaseActivity{
         tab4=(TextView)findViewById(R.id.text_navigation_tab4);
         tab4.setOnClickListener(new TabListener());
         System.out.println("Main-oncreate");
+
+        mSharedPreferences = getSharedPreferences(ALARM_XML_FILE_NAME, MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        if(!mSharedPreferences.contains(ALARM_DAYS_AHEAD)){
+            mEditor.putInt(ALARM_DAYS_AHEAD, 1);
+            mEditor.putInt(ALARM_HOUR, 9);
+            mEditor.putInt(ALARM_MINUTE, 0);
+            mEditor.commit();
+        }
+        Alarm.setAlarm(this);
     }
 
     @Override
