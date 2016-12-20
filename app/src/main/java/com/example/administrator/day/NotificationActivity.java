@@ -15,6 +15,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * 通知栏弹出提醒
  * Created by zhangxix on 2016/12/1.
@@ -39,6 +43,18 @@ public class NotificationActivity extends BaseActivity{
         int mID = mIntentIn.getIntExtra("id",-1);
         String mTitle = mIntentIn.getStringExtra("title");
         String mDate = mIntentIn.getStringExtra("date");
+        Calendar mNowCalendar = Calendar.getInstance();
+        Calendar mSetCalendar = (Calendar) mNowCalendar.clone();
+        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            mSetCalendar.setTime(mSimpleDateFormat.parse(mDate));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        mSetCalendar.set(Calendar.YEAR, mNowCalendar.get(Calendar.YEAR));
+        if( mSetCalendar.before(mNowCalendar) )
+            mDate = String.valueOf(mNowCalendar.get(Calendar.YEAR)+1) + mDate.substring(4, mDate.length());
         mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
         PendingIntent mPendingIntent = PendingIntent.getActivity(this, mID, mIntent, 0);

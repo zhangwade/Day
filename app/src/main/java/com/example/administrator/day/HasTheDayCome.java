@@ -39,7 +39,7 @@ public class HasTheDayCome {
         mNowCalendar.set(Calendar.MINUTE, 0);
         mNowCalendar.set(Calendar.SECOND, 0); //将2个要比较的日期 的 时分秒 初始化为一致
         Calendar mTempCalendar = (Calendar) mNowCalendar.clone();
-        mTempCalendar.add(Calendar.HOUR_OF_DAY, mDaysAhead); //辅助值，现在的日期加上提前通知的天数，用作与纪念日的比较
+        mTempCalendar.add(Calendar.DAY_OF_YEAR, mDaysAhead); //辅助值，现在的日期加上提前通知的天数，用作与纪念日的比较
         if(mAgain == 0){ //不重复
             if( !mNowCalendar.after(mSetCalendar) && !mTempCalendar.before(mSetCalendar) ) return true;
         }else{ //每年重复

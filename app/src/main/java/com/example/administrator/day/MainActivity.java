@@ -7,6 +7,7 @@
 
 package com.example.administrator.day;
 
+import android.app.Application;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -108,7 +109,7 @@ public class MainActivity extends BaseActivity{
             mEditor.putInt(ALARM_MINUTE, 0);
             mEditor.commit();
         }
-        Alarm.setAlarm(this);
+        Alarm.setAlarm(MyApplication.getContext(), 0);
     }
 
     @Override

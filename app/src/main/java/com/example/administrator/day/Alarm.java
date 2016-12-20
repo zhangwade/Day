@@ -48,7 +48,7 @@ public class Alarm {
     public static final String ALARM_HOUR = "alarmHour";
     public static final String ALARM_MINUTE = "alarmMinute"; //通知时间
 
-    public static void setAlarm(Context mContext){//设定闹钟提醒
+    public static void setAlarm(Context mContext, int informed){//设定闹钟提醒
         Intent mIntent = new Intent(mContext, AlarmService.class);
         PendingIntent mPendingIntent = PendingIntent.getService(mContext, 0, mIntent, PendingIntent.FLAG_NO_CREATE);
         if(mPendingIntent == null){
@@ -57,6 +57,7 @@ public class Alarm {
             Calendar mSetCalendar = Calendar.getInstance();
             int mHour = mSharedPreferences.getInt(ALARM_HOUR, 9);
             int mMinute = mSharedPreferences.getInt(ALARM_MINUTE, 0);
+            if( informed == 1 ) mSetCalendar.add(Calendar.DAY_OF_YEAR, 1); //informed值为1代表今天已经通知过了
             mSetCalendar.set(Calendar.HOUR_OF_DAY, mHour);
             mSetCalendar.set(Calendar.MINUTE, mMinute);
             mSetCalendar.set(Calendar.SECOND, 0);
